@@ -1,37 +1,27 @@
 package com.example.library.dto;
 
-import com.example.library.entities.Book;
-import org.springframework.beans.BeanUtils;
+import org.springframework.lang.NonNull;
 
-public class BookDTO {
+public class RequestBookDTO {
 
-    private Long id;
+
     private String title;
     private Integer year;
     private String author;
     private Long value;
+    private Integer numPages;
     private String genre;
     private Double rating;
+    private Boolean active;
+    private String PublishingCompany;
     private String description;
 
-    public BookDTO(){}
 
-    public BookDTO(Book book){
-        BeanUtils.copyProperties(book,this);
+    public RequestBookDTO() {
     }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
     public String getTitle() {
         return title;
     }
-
     public void setTitle(String title) {
         this.title = title;
     }
@@ -60,6 +50,14 @@ public class BookDTO {
         this.value = value;
     }
 
+    public Integer getNumPages() {
+        return numPages;
+    }
+
+    public void setNumPages(Integer numPages) {
+        this.numPages = numPages;
+    }
+
     public String getGenre() {
         return genre;
     }
@@ -74,6 +72,22 @@ public class BookDTO {
 
     public void setRating(Double rating) {
         this.rating = rating;
+    }
+
+    public Boolean getActive() {
+        return active;
+    }
+
+    public void setActive(Boolean active) {
+        this.active = active;
+    }
+
+    public String getPublishingCompany() {
+        return PublishingCompany;
+    }
+
+    public void setPublishingCompany(String publishingCompany) {
+        PublishingCompany = publishingCompany;
     }
 
     public String getDescription() {

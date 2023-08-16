@@ -1,6 +1,9 @@
 package com.example.library.entities;
 
+import com.example.library.dto.BookDTO;
+import com.example.library.dto.RequestBookDTO;
 import jakarta.persistence.*;
+import org.springframework.beans.BeanUtils;
 
 import java.util.Objects;
 
@@ -40,6 +43,13 @@ public class Book {
         this.rating = rating;
         PublishingCompany = publishingCompany;
         this.description = description;
+    }
+
+    public Book (BookDTO bookDTO){
+        BeanUtils.copyProperties(bookDTO,this);
+    }
+    public Book (RequestBookDTO request){
+        BeanUtils.copyProperties(request,this);
     }
 
     public Long getId() {

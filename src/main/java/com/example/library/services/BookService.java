@@ -2,6 +2,7 @@ package com.example.library.services;
 
 import com.example.library.BookRepository;
 import com.example.library.dto.BookDTO;
+import com.example.library.dto.RequestBookDTO;
 import com.example.library.entities.Book;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -27,5 +28,14 @@ public class BookService {
     public BookDTO findById(Long id){
         Book book = bookRepository.findById(id).get();
         return new BookDTO(book);
+    }
+
+    @Transactional
+    public void createBook(Book book){
+        try {
+            bookRepository.save(book);
+        }catch (Exception e){
+            throw new RuntimeException("Erro ao criar livro !");
+        }
     }
 }

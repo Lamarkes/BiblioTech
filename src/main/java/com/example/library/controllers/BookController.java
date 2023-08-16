@@ -1,13 +1,12 @@
 package com.example.library.controllers;
 
 import com.example.library.dto.BookDTO;
+import com.example.library.dto.RequestBookDTO;
+import com.example.library.entities.Book;
 import com.example.library.services.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -29,4 +28,13 @@ public class BookController {
         BookDTO result = bookService.findById(id);
         return ResponseEntity.ok().body(result);
     }
+
+    @PostMapping(value = "/new")
+    public ResponseEntity createBook(@RequestBody RequestBookDTO request){
+        Book book = new Book(request);
+        bookService.createBook(book);
+        return ResponseEntity.ok().build();
+    }
+
 }
+
