@@ -1,6 +1,6 @@
 package com.example.library.services;
 
-import com.example.exceptions.ResourceNotFoundException;
+import com.example.library.exceptions.ResourceNotFoundException;
 import com.example.library.BookRepository;
 import com.example.library.dto.BookDTO;
 import com.example.library.entities.Book;
