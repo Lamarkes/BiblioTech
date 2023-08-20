@@ -5,6 +5,7 @@ import com.example.library.entities.Book;
 import com.example.library.services.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.lang.NonNull;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -36,6 +37,12 @@ public class BookController {
         Book book = new Book(request);
         bookService.createBook(book);
         return ResponseEntity.ok().build();
+    }
+
+    @GetMapping(value = "/books-by-author")
+    public ResponseEntity<List<BookDTO>> findByName(@RequestParam String author){
+        List<BookDTO> books = bookService.findBooksByAuthor(author);
+        return ResponseEntity.ok().body(books);
     }
 
     @DeleteMapping(value = "/delete/{id}")

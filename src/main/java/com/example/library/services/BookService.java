@@ -1,7 +1,7 @@
 package com.example.library.services;
 
 import com.example.library.exceptions.ResourceNotFoundException;
-import com.example.library.BookRepository;
+import com.example.library.repositories.BookRepository;
 import com.example.library.dto.BookDTO;
 import com.example.library.entities.Book;
 import jakarta.persistence.EntityNotFoundException;
@@ -35,6 +35,12 @@ public class BookService {
         }else {
             throw new ResourceNotFoundException("Id nao encontrado!");
         }
+    }
+
+    @Transactional
+    public List<BookDTO> findBooksByAuthor(String author){
+        List<Book> books = bookRepository.findByAuthor(author);
+        return books.stream().map(BookDTO::new).toList();
     }
 
     @Transactional
