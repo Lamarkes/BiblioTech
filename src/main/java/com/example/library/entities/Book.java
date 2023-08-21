@@ -19,11 +19,11 @@ public class Book {
     private Integer year;
     private String author;
     @Column(name ="book_value")
-    private Long value;
+    private Double value;
     private Integer numPages;
     private String genre;
     private Double rating;
-    @Column(name = "book_active")
+    @Column(columnDefinition = "boolean default true", name = "book_active")
     private Boolean active;
     private String PublishingCompany;
     @Column(columnDefinition = "TEXT")
@@ -31,7 +31,7 @@ public class Book {
 
     public Book(){}
 
-    public Book(Long id, String title, Integer year, String author, Long value, Integer numPages, String genre, Double rating, Boolean active, String publishingCompany, String description) {
+    public Book(Long id, String title, Integer year, String author, Double value, Integer numPages, String genre, Double rating, String publishingCompany, String description) {
         this.id = id;
         this.title = title;
         this.year = year;
@@ -39,9 +39,8 @@ public class Book {
         this.value = value;
         this.numPages = numPages;
         this.genre = genre;
-        this.active = active;
         this.rating = rating;
-        PublishingCompany = publishingCompany;
+        this.PublishingCompany = publishingCompany;
         this.description = description;
     }
 
@@ -50,6 +49,7 @@ public class Book {
     }
     public Book (RequestBookDTO request){
         BeanUtils.copyProperties(request,this);
+        this.active = true;
     }
 
     public Long getId() {
@@ -84,11 +84,11 @@ public class Book {
         this.author = author;
     }
 
-    public Long getValue() {
+    public Double getValue() {
         return value;
     }
 
-    public void setValue(Long value) {
+    public void setValue(Double value) {
         this.value = value;
     }
 

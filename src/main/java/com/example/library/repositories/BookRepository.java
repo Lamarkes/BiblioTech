@@ -14,9 +14,9 @@ public interface BookRepository extends JpaRepository<Book,Long> {
 
     Optional<Book> findById(Long id);
 
-    List<Book> findByAuthor(String author);
+    List<Book> findByAuthorAndActiveTrue(String author);
 
     List<Book> findAllByActiveTrue();
 
-    Page<Book> findByAuthor(String author, Pageable pageable);
+    Page<Book> findByAuthorAndActiveTrue(String author, Pageable pageable);
 }

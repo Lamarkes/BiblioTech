@@ -6,11 +6,11 @@ import com.example.library.services.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
-import org.springframework.lang.NonNull;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 
 @RestController
@@ -46,7 +46,14 @@ public class BookController {
         return ResponseEntity.ok().body(books);
     }
 
-    @GetMapping(value = "/books-by-author-")
+    @PutMapping(value = "/{id}")
+    public ResponseEntity<BookDTO> updateBook(@PathVariable Long id, @RequestBody RequestBookDTO request){
+        BookDTO bookDTO = bookService.updateBook(id,request);
+        return ResponseEntity.ok().body(bookDTO);
+    }
+
+
+    @GetMapping(value = "/books-by-author-paginated")
     public ResponseEntity<List<BookDTO>> findByAuthor(@RequestParam String author, Pageable pageable){
         List<BookDTO> books = bookService.findBooksByAuthor(author,pageable);
         return ResponseEntity.ok().body(books);
