@@ -8,7 +8,7 @@ public class RequestBookDTO {
     private String title;
     private Integer year;
     private String author;
-    private Long value;
+    private Double value;
     private Integer numPages;
     private String genre;
     private Double rating;
@@ -42,11 +42,11 @@ public class RequestBookDTO {
         this.author = author;
     }
 
-    public Long getValue() {
+    public Double getValue() {
         return value;
     }
 
-    public void setValue(Long value) {
+    public void setValue(Double value) {
         this.value = value;
     }
 
