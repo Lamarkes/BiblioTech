@@ -4,6 +4,7 @@ import com.example.library.dto.RequestBookDTO;
 import com.example.library.entities.Book;
 import com.example.library.services.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.lang.NonNull;
 import org.springframework.validation.annotation.Validated;
@@ -40,8 +41,14 @@ public class BookController {
     }
 
     @GetMapping(value = "/books-by-author")
-    public ResponseEntity<List<BookDTO>> findByName(@RequestParam String author){
+    public ResponseEntity<List<BookDTO>> findByAuthor(@RequestParam String author){
         List<BookDTO> books = bookService.findBooksByAuthor(author);
+        return ResponseEntity.ok().body(books);
+    }
+
+    @GetMapping(value = "/books-by-author-")
+    public ResponseEntity<List<BookDTO>> findByAuthor(@RequestParam String author, Pageable pageable){
+        List<BookDTO> books = bookService.findBooksByAuthor(author,pageable);
         return ResponseEntity.ok().body(books);
     }
 

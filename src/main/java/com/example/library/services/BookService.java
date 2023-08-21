@@ -6,6 +6,8 @@ import com.example.library.dto.BookDTO;
 import com.example.library.entities.Book;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -40,6 +42,12 @@ public class BookService {
     @Transactional
     public List<BookDTO> findBooksByAuthor(String author){
         List<Book> books = bookRepository.findByAuthor(author);
+        return books.stream().map(BookDTO::new).toList();
+    }
+
+    @Transactional
+    public List<BookDTO> findBooksByAuthor(String author, Pageable pageable){
+        Page<Book> books = bookRepository.findByAuthor(author,pageable);
         return books.stream().map(BookDTO::new).toList();
     }
 
