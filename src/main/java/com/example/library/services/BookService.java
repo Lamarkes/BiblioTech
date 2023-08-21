@@ -1,7 +1,7 @@
 package com.example.library.services;
 
 import com.example.library.dto.RequestBookDTO;
-import com.example.library.exceptions.ResourceNotFoundException;
+import com.example.library.exceptions.ExceptionDTO;
 import com.example.library.repositories.BookRepository;
 import com.example.library.dto.BookDTO;
 import com.example.library.entities.Book;
@@ -43,7 +43,7 @@ public class BookService {
             Book book = optionalbook.get();
             return new BookDTO(book);
         }else {
-            throw new ResourceNotFoundException("Id nao encontrado!");
+            throw new EntityNotFoundException();
         }
     }
 
@@ -68,7 +68,7 @@ public class BookService {
             bookRepository.save(book);
             return new BookDTO(book);
         }else {
-            throw new EntityNotFoundException("Livro nao encontrado!");
+            throw new EntityNotFoundException();
         }
     }
     @Transactional
@@ -89,7 +89,7 @@ public class BookService {
             book.setActive(false);
             bookRepository.save(book);
         }else {
-            throw new EntityNotFoundException("Livro nao encontrado!");
+            throw new EntityNotFoundException();
         }
     }
 }
