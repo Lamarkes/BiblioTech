@@ -1,6 +1,7 @@
 package com.example.library.controllers;
 import com.example.library.dto.BookDTO;
 import com.example.library.dto.RequestBookDTO;
+import com.example.library.dto.RequestUpdateBookDTO;
 import com.example.library.entities.Book;
 import com.example.library.services.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,7 +48,7 @@ public class BookController {
     }
 
     @PutMapping(value = "/{id}")
-    public ResponseEntity<BookDTO> updateBook(@PathVariable Long id, @RequestBody RequestBookDTO request){
+    public ResponseEntity<BookDTO> updateBook(@PathVariable Long id, @RequestBody RequestUpdateBookDTO request){
         BookDTO bookDTO = bookService.updateBook(id,request);
         return ResponseEntity.ok().body(bookDTO);
     }

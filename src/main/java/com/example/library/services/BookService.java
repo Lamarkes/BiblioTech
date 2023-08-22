@@ -1,6 +1,7 @@
 package com.example.library.services;
 
 import com.example.library.dto.RequestBookDTO;
+import com.example.library.dto.RequestUpdateBookDTO;
 import com.example.library.exceptions.ExceptionDTO;
 import com.example.library.repositories.BookRepository;
 import com.example.library.dto.BookDTO;
@@ -60,7 +61,7 @@ public class BookService {
     }
 
     @Transactional
-    public BookDTO updateBook(Long id, RequestBookDTO request){
+    public BookDTO updateBook(Long id, RequestUpdateBookDTO request){
         Optional<Book> optionalBook = bookRepository.findById(id);
         if (optionalBook.isPresent()){
             Book book = optionalBook.get();

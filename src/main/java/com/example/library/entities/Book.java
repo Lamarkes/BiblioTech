@@ -2,6 +2,7 @@ package com.example.library.entities;
 
 import com.example.library.dto.BookDTO;
 import com.example.library.dto.RequestBookDTO;
+import com.example.library.dto.RequestUpdateBookDTO;
 import jakarta.persistence.*;
 import org.springframework.beans.BeanUtils;
 
@@ -49,7 +50,11 @@ public class Book {
     }
     public Book (RequestBookDTO request){
         BeanUtils.copyProperties(request,this);
-        this.active = true;
+        // this.active = true;
+    }
+
+    public Book(RequestUpdateBookDTO request){
+        BeanUtils.copyProperties(request,this);
     }
 
     public Long getId() {
