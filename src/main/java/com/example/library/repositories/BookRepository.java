@@ -18,5 +18,7 @@ public interface BookRepository extends JpaRepository<Book,Long> {
 
     List<Book> findAllByActiveTrue();
 
+    List<Book> findByTitleAndActiveTrue(String title);
+
     Page<Book> findByAuthorAndActiveTrue(String author, Pageable pageable);
 }

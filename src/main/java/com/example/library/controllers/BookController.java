@@ -27,18 +27,25 @@ public class BookController {
         return ResponseEntity.ok().body(book);
     }
 
-    @GetMapping(value = "/{id}")
-    public ResponseEntity<BookDTO> findById(@PathVariable Long id){
-        BookDTO result = bookService.findBookById(id);
-        return ResponseEntity.ok(result);
-
-    }
-
     @PostMapping(value = "/new")
     public ResponseEntity<Book> createBook(@Validated @RequestBody RequestBookDTO request){
         Book book = new Book(request);
         bookService.createBook(book);
         return ResponseEntity.ok().build();
+    }
+
+
+    @PutMapping(value = "/{id}")
+    public ResponseEntity<BookDTO> updateBook(@PathVariable Long id, @RequestBody RequestUpdateBookDTO request){
+        BookDTO bookDTO = bookService.updateBook(id,request);
+        return ResponseEntity.ok().body(bookDTO);
+    }
+
+    @GetMapping(value = "/{id}")
+    public ResponseEntity<BookDTO> findById(@PathVariable Long id){
+        BookDTO result = bookService.findBookById(id);
+        return ResponseEntity.ok(result);
+
     }
 
     @GetMapping(value = "/books-by-author")
@@ -47,18 +54,19 @@ public class BookController {
         return ResponseEntity.ok().body(books);
     }
 
-    @PutMapping(value = "/{id}")
-    public ResponseEntity<BookDTO> updateBook(@PathVariable Long id, @RequestBody RequestUpdateBookDTO request){
-        BookDTO bookDTO = bookService.updateBook(id,request);
-        return ResponseEntity.ok().body(bookDTO);
-    }
-
-
     @GetMapping(value = "/books-by-author-paginated")
     public ResponseEntity<List<BookDTO>> findByAuthor(@RequestParam String author, Pageable pageable){
         List<BookDTO> books = bookService.findBooksByAuthor(author,pageable);
         return ResponseEntity.ok().body(books);
     }
+
+    @GetMapping(value = "/books-by-title")
+    public ResponseEntity<List<BookDTO>> findByTitle(@RequestParam String title){
+        List<BookDTO> books = bookService.findBooksByTitle(title);
+        return ResponseEntity.ok().body(books);
+    }
+
+
 
     @DeleteMapping(value = "/delete/{id}")
     public ResponseEntity<String> deleteBook(@PathVariable Long id){

@@ -61,6 +61,12 @@ public class BookService {
     }
 
     @Transactional
+    public List<BookDTO> findBooksByTitle(String title){
+        List<Book> books = bookRepository.findByTitleAndActiveTrue(title);
+        return books.stream().map(BookDTO::new).toList();
+    }
+
+    @Transactional
     public BookDTO updateBook(Long id, RequestUpdateBookDTO request){
         Optional<Book> optionalBook = bookRepository.findById(id);
         if (optionalBook.isPresent()){
