@@ -11,7 +11,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
+
 
 
 @RestController
@@ -69,8 +69,8 @@ public class BookController {
 
 
     @DeleteMapping(value = "/delete/{id}")
-    public ResponseEntity<String> deleteBook(@PathVariable Long id){
-        bookService.deleteBook(id);
+    public ResponseEntity<String> SoftDeleteBook(@PathVariable Long id){
+        bookService.SoftDeleteBook(id);
         return ResponseEntity.ok("Livro excluido com sucesso");
     }
 }

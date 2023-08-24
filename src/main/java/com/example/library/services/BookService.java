@@ -1,8 +1,6 @@
 package com.example.library.services;
 
-import com.example.library.dto.RequestBookDTO;
 import com.example.library.dto.RequestUpdateBookDTO;
-import com.example.library.exceptions.ExceptionDTO;
 import com.example.library.repositories.BookRepository;
 import com.example.library.dto.BookDTO;
 import com.example.library.entities.Book;
@@ -88,7 +86,7 @@ public class BookService {
     }
 
     @Transactional
-    public void deleteBook(Long id){
+    public void SoftDeleteBook(Long id){
         Optional<Book> OptionalBook = bookRepository.findById(id);
 
         if (OptionalBook.isPresent()){
