@@ -1,34 +1,47 @@
-<h1 align="center">Sistema Bibliotecário.</h1>
-<p align="center">📚 Sistema API Rest simples de uma Biblioteca.</p>
+<h1 align="center">Sistema Bibliotecário</h1>
+<p align="center">📚 Uma API REST simples para gerenciamento de uma biblioteca.</p>
 
-<img src="https://img.shields.io/badge/Made with-JAVA-color.svg" alt="">
-<img src="https://img.shields.io/badge/Staus-Em desenvolvimento-orange.svg" alt="">
+<p align="center">
+    <img src="https://img.shields.io/badge/Made with-JAVA-color.svg" alt="Java">
+    <img src="https://img.shields.io/badge/Staus-Em desenvolvimento-orange.svg" alt="Em Desenvolvimento">
+</p>
 
-<h2>Tabela de conteúdos</h2>
-=================
-<!--ts-->
-* [Sobre](#Sobre)
-* [Tabela de Conteudo](#tabela-de-conteudo)
-* [Instalação](#instalacao)
-* [Como usar](#como-usar)
-    * [Pre Requisitos](#pre-requisitos)
-    * [Local files](#local-files)
-    * [Remote files](#remote-files)
-    * [Multiple files](#multiple-files)
-* [Tecnologias](#tecnologias)
-<!--te-->
+<h2>📝 Índice</h2>
 
-<h3> Features</h3>
+- [Sobre](#sobre)
+- [Como Usar](#como-usar)
+    - [Pré-Requisitos](#pré-requisitos)
+    - [Arquivos Locais](#arquivos-locais)
+    - [Arquivos Remotos](#arquivos-remotos)
+    - [Múltiplos Arquivos](#múltiplos-arquivos)
+- [Tecnologias](#tecnologias)
+- [Funcionalidades](#funcionalidades)
 
-- Cadastro de Livros:
+## Sobre
 
+Este é um projeto de uma API REST para gerenciar uma biblioteca. Ele permite o cadastro de livros, busca por livros por ID, autor ou título, e o cadastro de clientes.
+Ainda esta em desenvolvimento, futuramente terá a integração do Front end e Design.
+
+## Como usar
+
+Para começar, siga os passos abaixo:
+
+1. Clone este repositório:
+
+```shell
+git clone https://github.com/seu-usuario/sistema-bibliotecario.git
+```
+2. Pré-Requisitos
+Certifique-se de ter as seguintes tecnologias instaladas:
+- Java (Versão 17)
+- Maven (4.0.0)
+- MySQL
+
+## Funcionalidades
+- Cadastro de Livros
 - Busca de Livros
-  -  Busca pelo Id
-  -  Busca pelo Autor
-  -  Busca pelo Titulo
-  
-- Cadastro de cliente
-
-
-
+- Busca por ID
+- Busca por Autor
+- Busca por Título
+- Cadastro de Clientes
 
