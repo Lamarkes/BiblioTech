@@ -1,36 +1,65 @@
 package com.example.library.entities;
-
-import com.example.library.dto.BookDTO;
-import com.example.library.dto.RequestBookDTO;
-import com.example.library.dto.RequestUpdateBookDTO;
+import com.example.library.dtos.BookDTO;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import org.hibernate.validator.constraints.Length;
 import org.springframework.beans.BeanUtils;
 
+import java.io.Serial;
+import java.io.Serializable;
 import java.util.Objects;
 
-@Entity
-@Table(name = "tb_book")
-public class Book {
+
+// classe principal para representar o livro na base de dados
+@Entity // anotaçao para informar para a JPA que essa classe é uma entidade do banco de dados
+@Getter
+@Setter
+@EqualsAndHashCode
+@NoArgsConstructor
+@Table(name = "tb_book") // anotaçao para nomear a classe no banco de dados
+public class Book implements Serializable {
+    @Serial
+    private static final long serialVersionUID = 1L;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // estrategia de geração autimantica de Id, de forma incremental
     private Long id;
+
+    @NotBlank
+    @Length(min = 2, max = 100)
     private String title;
-    @Column(name = "book_year")
+
+    @Column(name = "book_year") // renomeando a coluna para outro nome
     private Integer year;
+
     private String author;
-    @Column(name ="book_value")
+
+    @Column(name ="book_value")// renomeando a coluna para outro nome
+
     private Double value;
+    @NotNull
     private Integer numPages;
+    @NotBlank
+    @Length(min = 2, max = 100)
     private String genre;
+
     private Double rating;
+
+    // configuraçao para definir esta coluna boleana para sempre ser true e renomeando com outro nome
     @Column(columnDefinition = "boolean default true", name = "book_active")
     private Boolean active;
+
     private String PublishingCompany;
+
+    // definindo esta coluna com o tipo TEXT, para receber mais caracteres
     @Column(columnDefinition = "TEXT")
     private String description;
 
-    public Book(){}
 
     public Book(Long id, String title, Integer year, String author, Double value, Integer numPages, String genre, Double rating, String publishingCompany, String description) {
         this.id = id;
@@ -45,106 +74,11 @@ public class Book {
         this.description = description;
     }
 
+    // metodo para converter de BookDTO para BOOK - normalmente nao sera utilizada
     public Book (BookDTO bookDTO){
         BeanUtils.copyProperties(bookDTO,this);
+        this.setActive(true);
     }
-    public Book (RequestBookDTO request){
-        BeanUtils.copyProperties(request,this);
-        // this.active = true;
-    }
-
-    public Book(RequestUpdateBookDTO request){
-        BeanUtils.copyProperties(request,this);
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public Integer getYear() {
-        return year;
-    }
-
-    public void setYear(Integer year) {
-        this.year = year;
-    }
-
-    public String getAuthor() {
-        return author;
-    }
-
-    public void setAuthor(String author) {
-        this.author = author;
-    }
-
-    public Double getValue() {
-        return value;
-    }
-
-    public void setValue(Double value) {
-        this.value = value;
-    }
-
-    public Integer getNumPages() {
-        return numPages;
-    }
-
-    public void setNumPages(Integer numPages) {
-        this.numPages = numPages;
-    }
-
-    public String getGenre() {
-        return genre;
-    }
-
-    public void setGenre(String genre) {
-        this.genre = genre;
-    }
-
-    public Double getRating() {
-        return rating;
-    }
-
-    public void setRating(Double rating) {
-        this.rating = rating;
-    }
-
-    public Boolean getActive() {
-        return active;
-    }
-
-    public void setActive(Boolean active) {
-        this.active = active;
-    }
-
-    public String getPublishingCompany() {
-        return PublishingCompany;
-    }
-
-    public void setPublishingCompany(String publishingCompany) {
-        PublishingCompany = publishingCompany;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
 
     @Override
     public boolean equals(Object o) {
