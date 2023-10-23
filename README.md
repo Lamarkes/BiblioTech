@@ -1,5 +1,5 @@
 <h1 align="center">
-    📚 <a href="#" alt="Sistema bibliotecário"> BiblioTec </a>
+    📚 <a href="#" alt="Sistema bibliotecário"> BiblioTech </a>
 </h1>
 
 <h3 align="center">🔖 Permite aos bibliotecários manter um catálogo de livros, rastrear empréstimos e devoluções, e facilitar o acesso dos leitores às informações sobre os livros disponíveis.</h3>
@@ -14,7 +14,7 @@
 </p>
 
 <h4 align="center"> 
-	🚧  BiblioTec 📘 Em construção...  🚧
+	🚧  BiblioTech 📘 Em construção...  🚧
 </h4>
 
 <h2>📝 Índice</h2>
@@ -35,7 +35,7 @@
 
 ## 💻 Sobre o Projeto
 
-📚 BiblioTec - Uma maneira mais fácil de gerenciar sua biblioteca, tendo acesso aos livros e leitores. De uma forma mais intuitiva e inovadora, buscando sempre inovar com as novas tecnologias.
+📚 BiblioTech - Uma maneira mais fácil de gerenciar sua biblioteca, tendo acesso aos livros e leitores. De uma forma mais intuitiva e inovadora, buscando sempre inovar com as novas tecnologias.
 
 Este projeto tem como finalidade aplicar as tecnologias e tecnicas que estamos estudando no momento, desde a sua modelagem até sua aplicação na nuvem
 
@@ -112,6 +112,6 @@ Feito com ❤️ por Lamark Ricarte. Entre em contato!
 
 ## 📝 Licença
 
-<h4> Este projeto ainda não tem licença!</h4>
+Este projeto esta sobe a licença [MIT](./LICENSE).
 
 ---
