@@ -1,4 +1,4 @@
-package com.example.library.dtos;
+package com.example.library.dto;
 
 
 // Classe seguingo o padrao DTO

@@ -1,7 +1,7 @@
 package com.example.library.controllers;
 //importaçoes utilizadas para realizaçao do sistema
-import com.example.library.dtos.BookDTO;
-import com.example.library.dtos.BookUpdateDTO;
+import com.example.library.dto.BookDTO;
+import com.example.library.dto.BookUpdateDTO;
 import com.example.library.services.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;

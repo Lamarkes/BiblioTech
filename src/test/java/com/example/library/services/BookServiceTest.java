@@ -1,6 +1,6 @@
 package com.example.library.services;
 
-import com.example.library.dtos.BookDTO;
+import com.example.library.dto.BookDTO;
 import com.example.library.entities.Book;
 import com.example.library.repositories.BookRepository;
 import org.junit.Before;
@@ -14,7 +14,6 @@ import java.util.Collections;
 import java.util.List;
 import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.boot.test.context.SpringBootTest;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.when;
 import static org.mockito.Mockito.verify;

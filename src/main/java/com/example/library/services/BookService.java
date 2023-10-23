@@ -1,7 +1,7 @@
 package com.example.library.services;
-import com.example.library.dtos.BookUpdateDTO;
+import com.example.library.dto.BookUpdateDTO;
 import com.example.library.repositories.BookRepository;
-import com.example.library.dtos.BookDTO;
+import com.example.library.dto.BookDTO;
 import com.example.library.entities.Book;
 import jakarta.persistence.EntityNotFoundException;
 import org.modelmapper.ModelMapper;

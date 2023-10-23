@@ -1,11 +1,10 @@
-package com.example.library.dtos;
+package com.example.library.dto;
 
 import com.example.library.entities.Book;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.hibernate.validator.constraints.Length;
 import org.springframework.beans.BeanUtils;
 @Getter // anotação para substituir os metodos GET
 @Setter // anotação para substituir os metodos SET
