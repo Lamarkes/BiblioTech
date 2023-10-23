@@ -112,6 +112,6 @@ Feito com ❤️ por Lamark Ricarte. Entre em contato!
 
 ## 📝 Licença
 
-<h4> Este projeto ainda não tem licença!</h4>
+Este projeto esta sobe a licença [MIT]("./LICENSE").
 
 ---
