@@ -42,10 +42,9 @@ public class Book implements Serializable {
     @Column(name ="book_value")// renomeando a coluna para outro nome
 
     private Double value;
-    @NotNull
+
     private Integer numPages;
-    @NotBlank
-    @Length(min = 2, max = 100)
+
     private String genre;
 
     private Double rating;
@@ -77,7 +76,6 @@ public class Book implements Serializable {
     // metodo para converter de BookDTO para BOOK - normalmente nao sera utilizada
     public Book (BookDTO bookDTO){
         BeanUtils.copyProperties(bookDTO,this);
-        this.setActive(true);
     }
 
     @Override

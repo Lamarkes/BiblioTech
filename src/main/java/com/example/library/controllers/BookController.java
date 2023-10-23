@@ -1,9 +1,8 @@
 package com.example.library.controllers;
 //importaçoes utilizadas para realizaçao do sistema
 import com.example.library.dtos.BookDTO;
-import com.example.library.entities.Book;
+import com.example.library.dtos.BookUpdateDTO;
 import com.example.library.services.BookService;
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
@@ -51,7 +50,7 @@ public class BookController {
 
     // esta anotaçao indica que sera realizado um Put
     @PutMapping(value = "/update/{id}") // para relaizar, deve passar o caminho "books/update/id"
-    public ResponseEntity<BookDTO> updateBook(@PathVariable Long id, @RequestBody BookDTO request){ // o livro so podera ser atualizado passando um Id de livro existente e consequentemente os dados que deseja atualziar
+    public ResponseEntity<BookDTO> updateBook(@PathVariable Long id, @RequestBody BookUpdateDTO request){ // o livro so podera ser atualizado passando um Id de livro existente e consequentemente os dados que deseja atualziar
         BookDTO bookDTO = bookService.updateBook(id,request); // diretamente do bookService,o livro sera atualizado, passamos o id e as informaçoes que devsejamos atualziar em um BookDTO
         return ResponseEntity.ok().body(bookDTO); // por fim retornara o livro com os campos escolhidos com os dados que foram atualizados
     }
