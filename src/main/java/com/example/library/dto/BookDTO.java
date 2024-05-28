@@ -20,7 +20,7 @@ import org.springframework.beans.BeanUtils;
 public class BookDTO {
 
     // varivaeis da classe Book que podem ser utilizadas, as que nao estao aqui nao sao modificaveis
-    private Long id;
+    private Long key;
     @Length(min = 2, max = 100)
     private String title;
     private Integer year;

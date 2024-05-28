@@ -1,5 +1,6 @@
 package com.example.library.entities;
 import com.example.library.dto.BookDTO;
+import com.example.library.dto.BookUpdateDTO;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import lombok.EqualsAndHashCode;

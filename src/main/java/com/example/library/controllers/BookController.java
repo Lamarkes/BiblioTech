@@ -3,9 +3,11 @@ package com.example.library.controllers;
 import com.example.library.dto.BookDTO;
 import com.example.library.dto.BookUpdateDTO;
 import com.example.library.services.BookService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -28,10 +30,9 @@ public class BookController {
 
     // primeira implementaçao Get do sistema - FindAll
     // esta funçao ira retornar todos os livros que estao atualmente ativos no sistema diretamente do Banco de Dados
-    @GetMapping
+    @GetMapping(produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<List<BookDTO>> findAllBooks(){
-        return ResponseEntity.ok(bookService.findAllBooks().stream()
-                .map(BookDTO::new).toList()); // quando for realizado o GET, retornara todos os livros como resposta
+        return ResponseEntity.ok(bookService.findAllBooks()); // quando for realizado o GET, retornara todos os livros como resposta
     }
 
     //Primeira implementaçao Post do sistema - createBook
@@ -40,17 +41,16 @@ public class BookController {
     // anotaçao que indica que sera feito um Post
     @PostMapping(value = "/new") // para ser realizada, deve ser passado o caminho "books/new"
     public ResponseEntity<BookDTO> createBook(@Validated @RequestBody BookDTO bookDTO){ // indica que deve ser inserido um corpo na requisiçao que sera as informaçoes do novo livro
-        var book = bookService.createBook(bookDTO); // pega todas as informaçoes passadas como corpo e converte de RequestBookDTO em um Book
-        BookDTO createdBookDTO = new BookDTO(book);
+        var book = bookService.createBook(bookDTO); // pega todas as informaçoes passadas como corpo e converte de bookDTO em um Book
         // apos ser convertido para um Book e passado pelas validaçoes, sera salvo no banco de dados com um metodo do bookService
-        return ResponseEntity.status(HttpStatus.CREATED).body(createdBookDTO); // por fim sera retornado uma resposta informando que o livro foi adicionado
+        return ResponseEntity.status(HttpStatus.CREATED).body(new BookDTO(book)); // por fim sera retornado uma resposta informando que o livro foi adicionado
     }
     //Metodo Put - updateBook
     // esta funcionalidade ira atualziar um livro que for buscado por um Id existente
 
     // esta anotaçao indica que sera realizado um Put
     @PutMapping(value = "/update/{id}") // para relaizar, deve passar o caminho "books/update/id"
-    public ResponseEntity<BookDTO> updateBook(@PathVariable Long id, @RequestBody BookUpdateDTO request){ // o livro so podera ser atualizado passando um Id de livro existente e consequentemente os dados que deseja atualziar
+    public ResponseEntity<BookDTO> updateBook(@PathVariable Long id, @RequestBody @Valid BookUpdateDTO request){ // o livro so podera ser atualizado passando um Id de livro existente e consequentemente os dados que deseja atualziar
         BookDTO bookDTO = bookService.updateBook(id,request); // diretamente do bookService,o livro sera atualizado, passamos o id e as informaçoes que devsejamos atualziar em um BookDTO
         return ResponseEntity.ok().body(bookDTO); // por fim retornara o livro com os campos escolhidos com os dados que foram atualizados
     }
