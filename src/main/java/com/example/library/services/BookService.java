@@ -17,9 +17,9 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 import java.util.Optional;
 
-
+// TODO - CONFIGURAR ROTAS DA MANEIRA CORRETA
 // TODO - CONTINUAR REFATORANDO CODIGO
-// TODO - CONFIGURAR EXCEPTIONS - SE NECESSARIO
+// TODO - CONFIGURAR EXCEPTIONS
 // TODO - CONFIGURAR E UTILIZAR TESTES (REPOSITORY / SERVICES)
 
 
@@ -66,11 +66,9 @@ public class BookService {
     @Transactional
     public List<BookResponseDTO> findBooksByAuthor(String author) {
         List<Book> books = bookRepository.findByAuthorAndActiveTrue(author);
-        if (books.isEmpty()) {
-            throw new RuntimeException("Nenhum registro para este autor!");
-        } else {
-            return Mapper.parseListObjects(books, BookResponseDTO.class);
-        }
+        if (books.isEmpty()) throw new RuntimeException("Nenhum registro para este autor!");
+
+        return Mapper.parseListObjects(books, BookResponseDTO.class);
     }
 
     @Transactional
