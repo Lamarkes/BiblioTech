@@ -1,9 +1,11 @@
 package com.example.library.services;
+import com.example.library.dto.BookResponseDTO;
 import com.example.library.dto.BookUpdateDTO;
 import com.example.library.exceptions.ResourceNotFoundException;
 import com.example.library.mapper.BookMapper;
+import com.example.library.mapper.Mapper;
 import com.example.library.repositories.BookRepository;
-import com.example.library.dto.BookDTO;
+import com.example.library.dto.BookRequestDTO;
 import com.example.library.entities.Book;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +16,11 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 import java.util.Optional;
+
+
+// TODO - CONTINUAR REFATORANDO CODIGO
+// TODO - CONFIGURAR EXCEPTIONS - SE NECESSARIO
+// TODO - CONFIGURAR E UTILIZAR TESTES (REPOSITORY / SERVICES)
 
 
 // camada de Service, nela tera a logica de servico do sistema
@@ -37,73 +44,73 @@ public class BookService {
 
     // utilizaçao do ModelMapper que realiza mapeamento de um tipo para outro
     @Transactional
-    public List<BookDTO> findAllBooks() {
-        List<BookDTO> books = BookMapper.parseListObjects(bookRepository.findAllByActiveTrue(),BookDTO.class);
+    public List<BookResponseDTO> findAllBooks() {
+        List<BookResponseDTO> books = Mapper
+                .parseListObjects(bookRepository.findAllByActiveTrue(), BookResponseDTO.class);
+
         return books;
     }
 
     @Transactional(readOnly = true)
-    public BookDTO findBookById(Long id) {
+    public BookResponseDTO findBookById(Long id) {
 
         var book = bookRepository.findById(id).orElseThrow(
                 () -> new ResourceNotFoundException("No books found for this id!")
         );
-        var dto = BookMapper.parseObject(book,BookDTO.class);
+        var dto = Mapper.parseObject(book, BookResponseDTO.class);
+
         return dto;
     }
 
 
     @Transactional
-    public List<BookDTO> findBooksByAuthor(String author) {
+    public List<BookResponseDTO> findBooksByAuthor(String author) {
         List<Book> books = bookRepository.findByAuthorAndActiveTrue(author);
         if (books.isEmpty()) {
             throw new RuntimeException("Nenhum registro para este autor!");
         } else {
-            return books.stream().map(BookDTO::new).toList();
+            return Mapper.parseListObjects(books, BookResponseDTO.class);
         }
     }
 
     @Transactional
-    public List<BookDTO> findBooksByAuthor(String author, Pageable pageable) {
+    public List<BookResponseDTO> findBooksByAuthor(String author, Pageable pageable) {
         Page<Book> books = bookRepository.findByAuthorAndActiveTrue(author, pageable);
-        return books.stream().map(BookDTO::new).toList();
+        return books.stream().map(BookResponseDTO::new).toList();
     }
 
     @Transactional
-    public BookDTO findBooksByTitle(String title) {
+    public BookResponseDTO findBooksByTitle(String title) {
         Optional<Book> optionalBook = bookRepository.findByTitleAndActiveTrue(title);
         if (optionalBook.isPresent()) {
             Book book = optionalBook.get();
-            return new BookDTO(book);
+            return Mapper.parseObject(book, BookResponseDTO.class);
         } else {
             throw new EntityNotFoundException();
         }
     }
 
     @Transactional
-    public BookDTO updateBook(Long id, BookUpdateDTO bookUpdateDTO) {
+    public BookResponseDTO updateBook(Long id, BookUpdateDTO bookUpdateDTO) {
 
         var book = bookRepository.findById(id).orElseThrow(
                 () -> new ResourceNotFoundException("No books found for this id!")
         );
 
-        book.setTitle(bookUpdateDTO.getTitle());
-        book.setYear(bookUpdateDTO.getYear());
-        book.setValue(bookUpdateDTO.getValue());
-        book.setValue(bookUpdateDTO.getValue());
-        book.setNumPages(bookUpdateDTO.getNumPages());
-        book.setPublishingCompany(bookUpdateDTO.getPublishingCompany());
+        Book updatedBook = BookMapper.dtoToEntity(bookUpdateDTO, book);
 
-        var dto = BookMapper.parseObject(bookRepository.save(book),BookDTO.class);
+        var dto = Mapper.parseObject(bookRepository.save(updatedBook), BookResponseDTO.class);
 
         return dto;
     }
 
     @Transactional
-    public Book createBook(BookDTO bookDTO){
+    public BookResponseDTO createBook(BookRequestDTO bookRequestDTO){
         try {
-            Book book = new Book(bookDTO);
-            return bookRepository.save(book);
+            Book book = Mapper.parseObject(bookRequestDTO, Book.class);
+            book.setActive(true);
+            bookRepository.save(book);
+            return Mapper.parseObject(book, BookResponseDTO.class);
         }catch (DataAccessException e ){
            throw new RuntimeException("Erro ao criar livro!", e);
         }

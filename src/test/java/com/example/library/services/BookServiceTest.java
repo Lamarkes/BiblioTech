@@ -1,6 +1,6 @@
 package com.example.library.services;
 
-import com.example.library.dto.BookDTO;
+import com.example.library.dto.BookRequestDTO;
 import com.example.library.entities.Book;
 import com.example.library.repositories.BookRepository;
 import org.junit.Before;
@@ -48,7 +48,7 @@ public class BookServiceTest {
     @DisplayName("Saved books")
     public void savedBooksCase1(){
         final var bookExpected = books.get(1);
-        final var bookDTO = new BookDTO(bookExpected);
+        final var bookDTO = new BookRequestDTO(bookExpected);
 
         when(repository.save(bookExpected)).thenReturn(bookExpected);
 

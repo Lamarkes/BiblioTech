@@ -15,12 +15,11 @@ import org.springframework.beans.BeanUtils;
 
 @Getter // anotação para substituir os metodos GET
 @Setter // anotação para substituir os metodos SET
-@AllArgsConstructor
-@NoArgsConstructor // anotação para substituir o construtor sem argumentos
-public class BookDTO {
+
+public class BookRequestDTO {
 
     // varivaeis da classe Book que podem ser utilizadas, as que nao estao aqui nao sao modificaveis
-    private Long key;
+    private Long id;
     @Length(min = 2, max = 100)
     private String title;
     private Integer year;
@@ -30,12 +29,15 @@ public class BookDTO {
     @Length(min = 2, max = 100)
     private String genre;
     private Double rating;
-    private Boolean active = true;
+    private Boolean active;
     private String PublishingCompany;
     private String description;
 
+    public BookRequestDTO(){}
+
     // é utilizada para seguir o padrao que diz que o service so deve retornar DTOs
-    public BookDTO(Book book){ // construtor que copia todos os valores do bookDTO para o Book
+    public BookRequestDTO(Book book){ // construtor que copia todos os valores do bookDTO para o Book
         BeanUtils.copyProperties(book,this);
     }
+
 }
