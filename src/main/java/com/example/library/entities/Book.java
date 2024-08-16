@@ -1,8 +1,7 @@
 package com.example.library.entities;
-import com.example.library.dtos.BookDTO;
+import com.example.library.dto.BookRequestDTO;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -12,7 +11,6 @@ import org.springframework.beans.BeanUtils;
 
 import java.io.Serial;
 import java.io.Serializable;
-import java.util.Objects;
 
 
 // classe principal para representar o livro na base de dados
@@ -42,10 +40,9 @@ public class Book implements Serializable {
     @Column(name ="book_value")// renomeando a coluna para outro nome
 
     private Double value;
-    @NotNull
+    @Column(name ="num_pages")
     private Integer numPages;
-    @NotBlank
-    @Length(min = 2, max = 100)
+
     private String genre;
 
     private Double rating;
@@ -75,20 +72,7 @@ public class Book implements Serializable {
     }
 
     // metodo para converter de BookDTO para BOOK - normalmente nao sera utilizada
-    public Book (BookDTO bookDTO){
-        BeanUtils.copyProperties(bookDTO,this);
-        this.setActive(true);
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Book book)) return false;
-        return Objects.equals(id, book.id);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id);
+    public Book (BookRequestDTO bookRequestDTO){
+        BeanUtils.copyProperties(bookRequestDTO,this);
     }
 }
