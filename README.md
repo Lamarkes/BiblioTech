@@ -8,8 +8,8 @@
         <img alt="GitHub language count" src="https://img.shields.io/github/languages/count/Lamarkes/spring-library?color=%2304D361">
         <img alt="GitHub" src="https://img.shields.io/badge/Made with-JAVA-color.svg" alt="Java">
         <img src="https://img.shields.io/badge/Staus-Em desenvolvimento-orange.svg" alt="Em Desenvolvimento">
-        <a href="https://github.com/tgmarinho/README-ecoleta/commits/master">
-        <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/Lamarkes/spring-library">
+        <a href="https://github.com/Lamarkes/spring-library/commits/main">
+        <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/Lamarkes/spring-library/main">
         </a>
 </p>
 
