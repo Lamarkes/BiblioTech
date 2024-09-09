@@ -93,7 +93,7 @@ As seguintes ferramentas foram usadas na construção do projeto:
 - Busca por ID
 - Busca por Autor
 - Busca por Título
-- Cadastro de Clientes
+- Cadastro de Clientes (*EM BREVE*)
 
 ### Autor
 ---
