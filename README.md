@@ -48,7 +48,7 @@ Este projeto atualmente é composto apenas por 1 pasta:
  Antes de começar, você vai precisar certificar de ter instalado em sua máquina as seguintes ferramentas:
 - Java (Versão 17)
 - Git
-- Maven (4.0.0)
+- Maven (4.0.0^)
 - MySQL
 - VSCode
 - Postman
@@ -105,7 +105,7 @@ As seguintes ferramentas foram usadas na construção do projeto:
 
 Feito com ❤️ por Lamark Ricarte. Entre em contato!
 
-[![Twitter Badge](https://img.shields.io/badge/-@LamarkRi32-1ca0f1?style=flat-square&labelColor=1ca0f1&logo=twitter&logoColor=white&link=https://twitter.com/tgmarinho)](https://twitter.com/LamarkRi32) [![Linkedin Badge](https://img.shields.io/badge/-lamarkricarte-blue?style=flat-square&logo=Linkedin&logoColor=white&link=https://www.linkedin.com/in/lamarkricarte/)](https://www.linkedin.com/in/lamarkricarte/) 
+[![Linkedin Badge](https://img.shields.io/badge/-lamarkricarte-blue?style=flat-square&logo=Linkedin&logoColor=white&link=https://www.linkedin.com/in/lamarkricarte/)](https://www.linkedin.com/in/lamarkricarte/) 
 [![Gmail Badge](https://img.shields.io/badge/-lamark12ricarte@gmail.com-c14438?style=flat-square&logo=Gmail&logoColor=white&link=mailto:lamark12ricarte@gmail.com)](mailto:lamark12ricarte@gmail.com)
 
 ---
