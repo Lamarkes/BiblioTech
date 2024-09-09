@@ -37,7 +37,7 @@
 
 📚 BiblioTech - Uma maneira mais fácil de gerenciar sua biblioteca, tendo acesso aos livros e leitores. De uma forma mais intuitiva e inovadora, buscando sempre inovar com as novas tecnologias.
 
-Este projeto tem como finalidade aplicar as tecnologias e tecnicas que estamos estudando no momento, desde a sua modelagem até sua aplicação na nuvem
+Este projeto tem como finalidade aplicar as tecnologias e tecnicas que estamos estudando no momento, desde a sua modelagem até sua aplicação na nuvem!
 
 ## Como usar
 Este projeto atualmente é composto apenas por 1 pasta:
