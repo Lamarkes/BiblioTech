@@ -16,7 +16,7 @@ public class BookUpdateDTO {
     private Integer year;
     private Double value;
     private Integer numPages;
-    private String PublishingCompany;
+    private String publishingCompany;
 
     public BookUpdateDTO(Book book){ // construtor que copia todos os valores do bookDTO para o Book
         BeanUtils.copyProperties(book,this);

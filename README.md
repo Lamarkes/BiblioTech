@@ -1,3 +1,8 @@
+<p align="center">
+  <img src="./assets/logo-BiblioTech.jpg" alt="BiblioTech" height="331">
+</p>
+<hr>
+
 <h1 align="center">
     📚 <a href="#" alt="Sistema bibliotecário"> BiblioTech </a>
 </h1>
@@ -57,7 +62,7 @@ Este projeto atualmente é composto apenas por 1 pasta:
 ```shell
 # Clone este repositório:
 
-git clone https://github.com/seu-usuario/sistema-bibliotecario.git
+git clone https://github.com/Lamarkes/sistema-bibliotecario.git
 
 # Navegue até o diretório do projeto:
 

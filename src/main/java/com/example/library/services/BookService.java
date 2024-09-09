@@ -1,6 +1,7 @@
 package com.example.library.services;
 import com.example.library.dto.BookResponseDTO;
 import com.example.library.dto.BookUpdateDTO;
+import com.example.library.exceptions.BookAlreadyExistsException;
 import com.example.library.exceptions.ResourceNotFoundException;
 import com.example.library.mapper.BookMapper;
 import com.example.library.mapper.Mapper;
@@ -8,7 +9,6 @@ import com.example.library.repositories.BookRepository;
 import com.example.library.dto.BookRequestDTO;
 import com.example.library.entities.Book;
 import jakarta.persistence.EntityNotFoundException;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -17,7 +17,6 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 import java.util.Optional;
 
-// TODO - CONFIGURAR ROTAS DA MANEIRA CORRETA
 // TODO - CONTINUAR REFATORANDO CODIGO
 // TODO - CONFIGURAR EXCEPTIONS
 // TODO - CONFIGURAR E UTILIZAR TESTES (REPOSITORY / SERVICES)
@@ -30,9 +29,7 @@ public class BookService {
     // injeçao de dependencia do bookRepository
     //seguindo o modelo de desenvolvimento em que o repository deve ser utilizado na camada de Service
 
-    @Autowired
-    private BookRepository bookRepository;
-
+    private final BookRepository bookRepository;
 
 
     // construtor da classe bookServicce - injeçao de dependencia do modelMapper
@@ -45,10 +42,8 @@ public class BookService {
     // utilizaçao do ModelMapper que realiza mapeamento de um tipo para outro
     @Transactional
     public List<BookResponseDTO> findAllBooks() {
-        List<BookResponseDTO> books = Mapper
+        return Mapper
                 .parseListObjects(bookRepository.findAllByActiveTrue(), BookResponseDTO.class);
-
-        return books;
     }
 
     @Transactional(readOnly = true)
@@ -57,16 +52,14 @@ public class BookService {
         var book = bookRepository.findById(id).orElseThrow(
                 () -> new ResourceNotFoundException("No books found for this id!")
         );
-        var dto = Mapper.parseObject(book, BookResponseDTO.class);
-
-        return dto;
+        return Mapper.parseObject(book, BookResponseDTO.class);
     }
 
 
     @Transactional
     public List<BookResponseDTO> findBooksByAuthor(String author) {
-        List<Book> books = bookRepository.findByAuthorAndActiveTrue(author);
-        if (books.isEmpty()) throw new RuntimeException("Nenhum registro para este autor!");
+        var books = bookRepository.findByAuthorAndActiveTrue(author);
+        if (books.isEmpty()) throw new ResourceNotFoundException("No books found for this author!");
 
         return Mapper.parseListObjects(books, BookResponseDTO.class);
     }
@@ -84,7 +77,7 @@ public class BookService {
             Book book = optionalBook.get();
             return Mapper.parseObject(book, BookResponseDTO.class);
         } else {
-            throw new EntityNotFoundException();
+            throw new ResourceNotFoundException("No books found with this title!");
         }
     }
 
@@ -97,11 +90,11 @@ public class BookService {
 
         Book updatedBook = BookMapper.dtoToEntity(bookUpdateDTO, book);
 
-        var dto = Mapper.parseObject(bookRepository.save(updatedBook), BookResponseDTO.class);
-
-        return dto;
+        return Mapper.parseObject(bookRepository.save(updatedBook), BookResponseDTO.class);
     }
 
+
+    //TODO -> refactor the create book
     @Transactional
     public BookResponseDTO createBook(BookRequestDTO bookRequestDTO){
         try {
@@ -110,16 +103,16 @@ public class BookService {
             bookRepository.save(book);
             return Mapper.parseObject(book, BookResponseDTO.class);
         }catch (DataAccessException e ){
-           throw new RuntimeException("Erro ao criar livro!", e);
+           throw new BookAlreadyExistsException("Book already exists!");
         }
     }
 
     @Transactional
-    public void DisableBook(Long id){
-        Optional<Book> OptionalBook = bookRepository.findById(id);
+    public void disableBook(Long id){
+        Optional<Book> optionalBook = bookRepository.findById(id);
 
-        if (OptionalBook.isPresent()){
-            Book book = OptionalBook.get();
+        if (optionalBook.isPresent()){
+            Book book = optionalBook.get();
             book.setActive(false);
             bookRepository.save(book);
         }else {
