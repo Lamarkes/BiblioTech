@@ -2,10 +2,7 @@ package com.example.library.entities;
 import com.example.library.dto.BookRequestDTO;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.hibernate.validator.constraints.Length;
 import org.springframework.beans.BeanUtils;
 
@@ -18,17 +15,17 @@ import java.io.Serializable;
 @Getter
 @Setter
 @EqualsAndHashCode
-@NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "tb_book") // anotaçao para nomear a classe no banco de dados
 public class Book implements Serializable {
+
     @Serial
     private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) // estrategia de geração autimantica de Id, de forma incremental
     private Long id;
-
-    @NotBlank
+    @Column(nullable = false)
     @Length(min = 2, max = 100)
     private String title;
 
@@ -38,8 +35,8 @@ public class Book implements Serializable {
     private String author;
 
     @Column(name ="book_value")// renomeando a coluna para outro nome
-
     private Double value;
+
     @Column(name ="num_pages")
     private Integer numPages;
 
@@ -48,31 +45,17 @@ public class Book implements Serializable {
     private Double rating;
 
     // configuraçao para definir esta coluna boleana para sempre ser true e renomeando com outro nome
-    @Column(columnDefinition = "boolean default true", name = "book_active")
-    private Boolean active;
+    @Column(name = "book_active")
+    private Boolean active = true;
 
-    private String PublishingCompany;
+    private String publishingCompany;
 
     // definindo esta coluna com o tipo TEXT, para receber mais caracteres
     @Column(columnDefinition = "TEXT")
     private String description;
 
-
-    public Book(Long id, String title, Integer year, String author, Double value, Integer numPages, String genre, Double rating, String publishingCompany, String description) {
-        this.id = id;
-        this.title = title;
-        this.year = year;
-        this.author = author;
-        this.value = value;
-        this.numPages = numPages;
-        this.genre = genre;
-        this.rating = rating;
-        this.PublishingCompany = publishingCompany;
-        this.description = description;
-    }
-
     // metodo para converter de BookDTO para BOOK - normalmente nao sera utilizada
-    public Book (BookRequestDTO bookRequestDTO){
-        BeanUtils.copyProperties(bookRequestDTO,this);
-    }
+    public Book(){}
+
+
 }

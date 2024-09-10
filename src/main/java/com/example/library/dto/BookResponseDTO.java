@@ -2,9 +2,7 @@ package com.example.library.dto;
 
 
 import com.example.library.entities.Book;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.beans.BeanUtils;
 
@@ -18,7 +16,7 @@ public class BookResponseDTO {
     private Double value;
     private Integer numPages;
     private String genre;
-    private String PublishingCompany;
+    private String publishingCompany;
     private String description;
 
     public BookResponseDTO(){}

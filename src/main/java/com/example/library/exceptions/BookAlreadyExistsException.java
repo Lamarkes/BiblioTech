@@ -1,14 +1,13 @@
 package com.example.library.exceptions;
 
-
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
-@ResponseStatus(HttpStatus.NOT_FOUND)
-public class ResourceNotFoundException extends RuntimeException{
+@ResponseStatus(HttpStatus.CONFLICT)
+public class BookAlreadyExistsException extends RuntimeException{
 
-
-    public ResourceNotFoundException(String ex){
+    public BookAlreadyExistsException(String ex){
         super(ex);
     }
+
 }
