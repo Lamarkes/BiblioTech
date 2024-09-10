@@ -4,11 +4,11 @@ package com.example.library.exceptions;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
-@ResponseStatus(HttpStatus.NOT_FOUND)
-public class ResourceNotFoundException extends RuntimeException{
+@ResponseStatus(HttpStatus.BAD_REQUEST)
+public class RequiredObjectIsNullException extends RuntimeException{
 
 
-    public ResourceNotFoundException(String ex){
+    public RequiredObjectIsNullException(String ex){
         super(ex);
     }
 }
