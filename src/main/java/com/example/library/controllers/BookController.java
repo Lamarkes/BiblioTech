@@ -20,11 +20,10 @@ import java.util.List;
 @RequestMapping("/api/books/v1") // anotação que define o metodo de Request passando como valor /books - ira retornar todos os livros como padrao
 public class BookController {
 
+
+    final BookService bookService;
+
     // Injeçao de dependencia diretamente da camada de serviço
-    @Autowired
-    private BookService bookService;
-
-
      BookController(BookService bookService){
         this.bookService = bookService;
     }
@@ -43,7 +42,7 @@ public class BookController {
     @PostMapping(value = "/new",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE}) // para ser realizada, deve ser passado o caminho "books/new"
-    public ResponseEntity<BookResponseDTO> createBook(@Validated @RequestBody BookRequestDTO bookRequestDTO){ // indica que deve ser inserido um corpo na requisiçao que sera as informaçoes do novo livro
+    public ResponseEntity<BookResponseDTO> createBook(@RequestBody BookRequestDTO bookRequestDTO){ // indica que deve ser inserido um corpo na requisiçao que sera as informaçoes do novo livro
         var book = bookService.createBook(bookRequestDTO); // pega todas as informaçoes passadas como corpo e converte de bookDTO em um Book
         // apos ser convertido para um Book e passado pelas validaçoes, sera salvo no banco de dados com um metodo do bookService
         return ResponseEntity.status(HttpStatus.CREATED).body(book); // por fim sera retornado uma resposta informando que o livro foi adicionado
@@ -107,7 +106,7 @@ public class BookController {
     @DeleteMapping(value = "/disable/{id}") // caminho utilizado para desativar o livro
     public ResponseEntity<String> disableBook(@PathVariable Long id){ // o livro sera buscado por id
         bookService.disableBook(id); // se o livro existir, seu active sera passado para false e sera desativado
-        return ResponseEntity.ok("Livro desativado com sucesso"); // retorna a mensagem de desativaçao
+        return ResponseEntity.ok("Book successfully deactivated"); // retorna a mensagem de desativaçao
     }
 }
 
