@@ -9,7 +9,7 @@ CREATE TABLE `tb_book`(
     `num_pages` VARCHAR(100) NOT NULL,
     `genre` VARCHAR(100) NOT NULL,
     `rating` DOUBLE NOT NULL,
-    `book_active` BOOLEAN NOT NULL DEFAULT true,
+    `book_active` BOOLEAN NOT NULL DEFAULT TRUE,
     `publishing_company` VARCHAR(100) NOT NULL,
     `description` TEXT NOT NULL
 
