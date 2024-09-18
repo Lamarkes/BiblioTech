@@ -39,13 +39,11 @@ public class BookService {
     }
 
     // utilizaçao do ModelMapper que realiza mapeamento de um tipo para outro
-    @Transactional
     public List<BookResponseDTO> findAllBooks() {
         return Mapper
                 .parseListObjects(bookRepository.findAllByActiveTrue(), BookResponseDTO.class);
     }
 
-    @Transactional(readOnly = true)
     public BookResponseDTO findBookById(Long id) {
 
         var book = bookRepository.findById(id).orElseThrow(
@@ -54,8 +52,6 @@ public class BookService {
         return Mapper.parseObject(book, BookResponseDTO.class);
     }
 
-
-    @Transactional
     public List<BookResponseDTO> findBooksByAuthor(String author) {
         var books = bookRepository.findByAuthorAndActiveTrue(author);
         if (books.isEmpty()) throw new ResourceNotFoundException("No books found for this author!");
@@ -63,13 +59,11 @@ public class BookService {
         return Mapper.parseListObjects(books, BookResponseDTO.class);
     }
 
-    @Transactional
     public List<BookResponseDTO> findBooksByAuthor(String author, Pageable pageable) {
         Page<Book> books = bookRepository.findByAuthorAndActiveTrue(author, pageable);
         return books.stream().map(BookResponseDTO::new).toList();
     }
 
-    @Transactional
     public BookResponseDTO findBooksByTitle(String title) {
         var book = bookRepository.findByTitleAndActiveTrue(title).orElseThrow(
                 () -> new ResourceNotFoundException("No books found with this title!"));
@@ -89,7 +83,6 @@ public class BookService {
         return Mapper.parseObject(bookRepository.save(updatedBook), BookResponseDTO.class);
     }
 
-    @Transactional
     public BookResponseDTO createBook(BookRequestDTO bookRequestDTO){
         if (bookRequestDTO == null) throw
                 new RequiredObjectIsNullException("It is not allowed to persist a null object");
@@ -100,7 +93,6 @@ public class BookService {
 
     }
 
-    @Transactional
     public void disableBook(Long id){
         var book = bookRepository.findById(id).orElseThrow(
                 () -> new ResourceNotFoundException("No books found for this id!")
