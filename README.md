@@ -97,11 +97,14 @@ As seguintes ferramentas foram usadas na construção do projeto:
 - Editor: [InteliJ](https://www.jetbrains.com/pt-br/idea/)
 
 ## Funcionalidades
+#### Livros
 - Cadastro de Livros
 - Busca de Livros
 - Busca por ID
 - Busca por Autor
 - Busca por Título
+
+#### Clientes
 - Cadastro de Clientes (*EM BREVE*)
 
 ### Autor
