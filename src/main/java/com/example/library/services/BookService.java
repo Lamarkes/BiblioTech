@@ -9,16 +9,11 @@ import com.example.library.mapper.Mapper;
 import com.example.library.repositories.BookRepository;
 import com.example.library.dto.BookRequestDTO;
 import com.example.library.entities.Book;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
-
-
-// TODO - CONTINUAR REFATORANDO CODIGO
-// TODO - CONFIGURAR EXCEPTIONS
-// TODO - CONFIGURAR E UTILIZAR TESTES (REPOSITORY / SERVICES)
 
 
 // camada de Service, nela tera a logica de servico do sistema
@@ -27,16 +22,12 @@ public class BookService {
 
     // injeçao de dependencia do bookRepository
     //seguindo o modelo de desenvolvimento em que o repository deve ser utilizado na camada de Service
+    @Autowired
+    private BookRepository bookRepository;
 
-    private final BookRepository bookRepository;
 
-
-    // construtor da classe bookServicce - injeçao de dependencia do modelMapper
-    // assim que for utilizada, ele injeta a dependencia do modelMapper
     // serve justamente para fazer o mapeamento de um tipo para outro, evitando muitas linhas de codigo
-    public BookService(BookRepository bookRepository) {
-        this.bookRepository = bookRepository;
-    }
+
 
     // utilizaçao do ModelMapper que realiza mapeamento de um tipo para outro
     public List<BookResponseDTO> findAllBooks() {
@@ -71,7 +62,6 @@ public class BookService {
             return Mapper.parseObject(book, BookResponseDTO.class);
     }
 
-    @Transactional
     public BookResponseDTO updateBook(Long id, BookUpdateDTO bookUpdateDTO) {
 
         var book = bookRepository.findById(id).orElseThrow(
