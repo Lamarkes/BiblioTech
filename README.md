@@ -82,11 +82,15 @@ npm install
 ### 🛠 Tecnologias
 
 As seguintes ferramentas foram usadas na construção do projeto:
-#### Back-End
+#### 👩🏻‍💻 Back-End
 - [Java](https://www.oracle.com/br/java/)
 - [Spring Framework](https://spring.io/)
 - [Maven](https://maven.apache.org/)
 - [MySQL](https://www.mysql.com/)
+
+#### 🧪 Testes
+- [JUnit](https://junit.org/junit5/)
+- [Mockito](https://site.mockito.org/)
   
 #### Utilitários:
 - Teste da API: [Postman](https://www.postman.com/)
