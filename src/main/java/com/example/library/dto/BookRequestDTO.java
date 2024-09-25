@@ -15,4 +15,5 @@ public record BookRequestDTO(
         Double rating,
         String publishingCompany,
         String description) {
+
 }

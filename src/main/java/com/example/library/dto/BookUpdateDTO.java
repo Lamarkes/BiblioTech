@@ -21,4 +21,5 @@ public class BookUpdateDTO {
     public BookUpdateDTO(Book book){ // construtor que copia todos os valores do bookDTO para o Book
         BeanUtils.copyProperties(book,this);
     }
+
 }
