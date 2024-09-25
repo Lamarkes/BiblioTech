@@ -24,6 +24,7 @@ public class BookController {
     final BookService bookService;
 
     // Injeçao de dependencia diretamente da camada de serviço
+     @Autowired
      BookController(BookService bookService){
         this.bookService = bookService;
     }
@@ -74,7 +75,7 @@ public class BookController {
     }
     //funçao Get - findByAuthor
     // esta funçao fara uma bsuca no banco de dados do sistema pelo nome do autor
-    @GetMapping(value = "/books-by-author",
+    @GetMapping(value = "/author",
             produces = {MediaType.APPLICATION_JSON_VALUE}) // caminho utilizado para realizar a busca
     public ResponseEntity<List<BookResponseDTO>> findByAuthor(@RequestParam String author){ // passando o nome do autor como paramentro
         List<BookResponseDTO> books = bookService.findBooksByAuthor(author); // ira retornar uma lista com todos os livros que foram publicados pelo autor que foi informado
