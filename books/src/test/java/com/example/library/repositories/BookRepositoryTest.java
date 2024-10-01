@@ -2,6 +2,7 @@ package com.example.library.repositories;
 
 import com.example.library.dto.BookRequestDTO;
 import com.example.library.entities.Book;
+import com.example.library.unittests.mapper.MockBook;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,16 +18,19 @@ class BookRepositoryTest {
     @Autowired
     BookRepository repository;
 
-//    @Test
-//    @DisplayName("Get Book Successfully from DB")
-//    void findByIdCase1() {
-//        BookRequestDTO bookRequestDTO = new BookRequestDTO(1L,"Book 1",2012,"Author 1",20.0,30,"Genre 1",5.0,true,"Publishing 1","description 1");
-//        this.createBook(bookRequestDTO);
-//
-//        Optional<Book> result = this.repository.findById(bookRequestDTO.getId());
-//
-//        assertThat(result.isPresent()).isTrue();
-//    }
+    MockBook input = new MockBook();
+
+    @Test
+    @DisplayName("Get Book Successfully from DB")
+    void findByIdCase1() {
+        var book = input.mockEntity(1);
+        repository.save(book);
+
+        Optional<Book> result = this.repository.findById(1L);
+
+        assertThat(result).isPresent();
+    }
+
 
     @Test
     @DisplayName("Not Get Book Successfully")
@@ -35,11 +39,6 @@ class BookRepositoryTest {
 
         Optional<Book> result = this.repository.findById(id);
 
-        assertThat(result.isEmpty()).isTrue();
-    }
-
-    private void createBook(BookRequestDTO bookRequestDTO){
-        Book newBook = new Book(bookRequestDTO);
-        this.repository.save(newBook);
+        assertThat(result).isEmpty();
     }
 }
