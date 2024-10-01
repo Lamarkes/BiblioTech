@@ -70,11 +70,11 @@ cd spring-library
 
 # Instale as dependências:
 
-npm install 
+mvn install 
 
 # Inicie o servidor:
 
- npm run dev:server  # npm start ou yarn start "se você usa o Yarn"
+ mvn spring-boot:run 
 
 # O servidor inciará na porta:8080 - acesse http://localhost:8080 
 ```
