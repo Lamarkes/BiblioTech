@@ -1,13 +1,14 @@
 package com.example.library.entities;
-import com.example.library.dto.BookRequestDTO;
+import com.example.library.enums.GenreBook;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotBlank;
 import lombok.*;
 import org.hibernate.validator.constraints.Length;
-import org.springframework.beans.BeanUtils;
 
 import java.io.Serial;
 import java.io.Serializable;
+import java.math.BigDecimal;
+import java.time.LocalDate;
 
 
 // classe principal para representar o livro na base de dados
@@ -25,22 +26,25 @@ public class Book implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) // estrategia de geração autimantica de Id, de forma incremental
     private Long id;
+
     @Column(nullable = false)
     @Length(min = 2, max = 100)
     private String title;
 
     @Column(name = "book_year") // renomeando a coluna para outro nome
-    private Integer year;
+    private LocalDate year;
 
+    @Column(name = "author_name", nullable = false) // relacionamento com a tableba autor
     private String author;
 
     @Column(name ="book_value")// renomeando a coluna para outro nome
-    private Double value;
+    private BigDecimal value;
 
     @Column(name ="num_pages")
     private Integer numPages;
 
-    private String genre;
+    @Enumerated(value = EnumType.STRING)
+    private GenreBook genre;
 
     private Double rating;
 
@@ -48,7 +52,10 @@ public class Book implements Serializable {
     @Column(name = "book_active")
     private Boolean active = true;
 
-    private String publishingCompany;
+    @ManyToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "editora_id", nullable = false)
+    @JsonBackReference
+    private Publisher publisher;
 
     // definindo esta coluna com o tipo TEXT, para receber mais caracteres
     @Column(columnDefinition = "TEXT")
@@ -56,6 +63,5 @@ public class Book implements Serializable {
 
     // metodo para converter de BookDTO para BOOK - normalmente nao sera utilizada
     public Book(){}
-
 
 }
