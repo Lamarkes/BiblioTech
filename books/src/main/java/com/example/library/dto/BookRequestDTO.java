@@ -5,14 +5,21 @@ package com.example.library.dto;
 // ao inves de utilizar a classe Book, passa a utilzar uma classe DTO para manipular dados de maneira eficiente
 
 
+import com.example.library.entities.Publisher;
+import com.example.library.enums.GenreBook;
+
+import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.util.Date;
+
 public record BookRequestDTO(
         String title,
-        Integer year,
+        LocalDate year,
         String author,
-        Double value,
+        BigDecimal value,
         Integer numPages,
-        String genre,
+        GenreBook genre,
         Double rating,
-        String publishingCompany,
+        Publisher publisher,
         String description) {
 }

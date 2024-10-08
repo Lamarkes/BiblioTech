@@ -6,6 +6,11 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.beans.BeanUtils;
+
+import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.util.Date;
+
 @Getter // anotação para substituir os metodos GET
 @Setter // anotação para substituir os metodos SET
 @AllArgsConstructor
@@ -13,8 +18,8 @@ import org.springframework.beans.BeanUtils;
 public class BookUpdateDTO {
 
     private String title;
-    private Integer year;
-    private Double value;
+    private LocalDate year;
+    private BigDecimal value;
     private Integer numPages;
     private String publishingCompany;
 
