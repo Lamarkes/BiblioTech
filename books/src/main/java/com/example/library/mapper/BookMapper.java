@@ -15,7 +15,6 @@ public class BookMapper {
         book.setYear(request.getYear());
         book.setValue(request.getValue());
         book.setNumPages(request.getNumPages());
-        book.setPublishingCompany(request.getPublishingCompany());
         return book;
     }
 
@@ -31,7 +30,7 @@ public class BookMapper {
         book.setNumPages(requestDTO.numPages());
         book.setGenre(requestDTO.genre());
         book.setRating(requestDTO.rating());
-        book.setPublishingCompany(requestDTO.publishingCompany());
+        book.setPublisher(requestDTO.publisher());
         book.setDescription(requestDTO.description());
 
 
