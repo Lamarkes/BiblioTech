@@ -24,6 +24,7 @@
 
 <h2>📝 Índice</h2>
 
+* [Diagrama UML do Projeto](#diagrama-uml-do-bibliotech)
 * [Sobre o Projeto](#-sobre-o-projeto)
 * [Como Usar](#como-usar)
     * [Pré-Requisitos](#pré-requisitos)
@@ -32,11 +33,17 @@
      * [Back-end](#back-end)
      * [Utilitários](#utilitários)
 * Layout
-  * Web
+  * Web (*EM BREVE*)
 * [Funcionalidades](#funcionalidades)
 * Contribuidores
 * [Autor](#autor)
 * [Licença](#-licença)
+
+
+## 📎 Diagrama UML do BiblioTech
+<p align="center">
+<img src="./assets/Projeto bibliotecário - Modelagem.png" alt="Modelagem" height="331">
+</p>
 
 ## 💻 Sobre o Projeto
 
@@ -46,12 +53,12 @@ Este projeto tem como finalidade aplicar as tecnologias e tecnicas que estamos e
 
 ## Como usar
 Este projeto atualmente é composto apenas por 1 pasta:
-1. Backend (pasta spring-library)
+1. Backend (pasta BiblioTech)
    
 ### Pré-requisitos
 
  Antes de começar, você vai precisar certificar de ter instalado em sua máquina as seguintes ferramentas:
-- Java (Versão 17)
+- Java (Versão 17^)
 - Git
 - Maven (4.0.0^)
 - MySQL
@@ -62,19 +69,19 @@ Este projeto atualmente é composto apenas por 1 pasta:
 ```shell
 # Clone este repositório:
 
-git clone https://github.com/Lamarkes/sistema-bibliotecario.git
+git clone https://github.com/Lamarkes/BiblioTech.git
 
 # Navegue até o diretório do projeto:
 
-cd spring-library
+cd BiblioTech
 
 # Instale as dependências:
 
-npm install 
+mvn install 
 
 # Inicie o servidor:
 
- npm run dev:server  # npm start ou yarn start "se você usa o Yarn"
+ mvn spring-boot:run 
 
 # O servidor inciará na porta:8080 - acesse http://localhost:8080 
 ```
@@ -89,6 +96,10 @@ As seguintes ferramentas foram usadas na construção do projeto:
 - [MySQL](https://www.mysql.com/)
 
 #### 🧪 Testes
+
+- [H2 Database](https://www.h2database.com)
+
+
 - [JUnit](https://junit.org/junit5/)
 - [Mockito](https://site.mockito.org/)
   
@@ -96,12 +107,21 @@ As seguintes ferramentas foram usadas na construção do projeto:
 - Teste da API: [Postman](https://www.postman.com/)
 - Editor: [InteliJ](https://www.jetbrains.com/pt-br/idea/)
 
+
+### 📍 Documentação dos Endpoints (Swagger API)
+Ao inicializar o projeto, é possivel acessar a documentação dos endpoints e testa-los de maneira dinâmica: 
+
+- [Página do Swagger](http://localhost:8080/swagger-ui/index.html)
+
+
 ## Funcionalidades
+#### Livros
 - Cadastro de Livros
 - Busca de Livros
 - Busca por ID
 - Busca por Autor
 - Busca por Título
+#### Usuarios
 - Cadastro de Clientes (*EM BREVE*)
 
 ### Autor
