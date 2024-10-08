@@ -12,5 +12,5 @@ CREATE TABLE `tb_book`(
     `book_active` BOOLEAN NOT NULL DEFAULT TRUE,
     `description` TEXT NOT NULL,
     `editora_id` BIGINT,
-    CONSTRAINT id FOREIGN KEY (editora_id) REFERENCES tb_publisher(id)
+    FOREIGN KEY (editora_id) REFERENCES tb_publisher(id)
 );
