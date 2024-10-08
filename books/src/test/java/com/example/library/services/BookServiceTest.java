@@ -14,6 +14,8 @@ import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.junit.Test;
+
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -60,6 +62,7 @@ public class BookServiceTest {
         var bookSaved = service.createBook(request);
         assertEquals(bookSaved.getTitle(), response.getTitle());
         assertEquals(bookSaved.getNumPages(), response.getNumPages());
+        assertEquals(bookSaved.getAuthor(), response.getAuthor());
     }
     @Test
     @DisplayName("Books error")
@@ -93,8 +96,8 @@ public class BookServiceTest {
         assertNotNull(result);
         assertEquals("Titulo1", result.getTitle());
         assertEquals("Autor1", result.getAuthor());
-        assertEquals(2014, result.getYear());
-        assertEquals(20.0, result.getValue());
+        assertEquals(book.getYear(), result.getYear());
+        assertEquals(new BigDecimal(20), result.getValue());
         (repository).findById(1L);
     }
     @Test
