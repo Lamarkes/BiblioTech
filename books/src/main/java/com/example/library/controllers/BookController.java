@@ -4,7 +4,9 @@ import com.example.library.dto.BookRequestDTO;
 import com.example.library.dto.BookResponseDTO;
 import com.example.library.dto.BookUpdateDTO;
 import com.example.library.services.BookService;
+import com.example.library.services.PublisherService;
 import com.example.library.util.MediaType;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
@@ -18,6 +20,7 @@ import java.util.List;
 
 @RestController// Anotação que indica para o Spring que esta classe sera um controlador Rest
 @RequestMapping("/api/books/v1") // anotação que define o metodo de Request passando como valor /books - ira retornar todos os livros como padrao
+@Tag(name = "Books", description = "Path for books")
 public class BookController {
 
 
@@ -74,7 +77,7 @@ public class BookController {
     }
     //funçao Get - findByAuthor
     // esta funçao fara uma bsuca no banco de dados do sistema pelo nome do autor
-    @GetMapping(value = "/books-by-author",
+    @GetMapping(value = "/author",
             produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE}) // caminho utilizado para realizar a busca
     public ResponseEntity<List<BookResponseDTO>> findByAuthor(@RequestParam String author){ // passando o nome do autor como paramentro
         List<BookResponseDTO> books = bookService.findBooksByAuthor(author); // ira retornar uma lista com todos os livros que foram publicados pelo autor que foi informado
