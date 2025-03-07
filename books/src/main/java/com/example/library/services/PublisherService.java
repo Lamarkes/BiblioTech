@@ -1,10 +1,10 @@
 package com.example.library.services;
 
-import com.example.library.dto.PublisherResponseDTO;
+import com.example.library.dto.publisher.PublisherResponseDTO;
 import com.example.library.entities.Publisher;
 import com.example.library.exceptions.RequiredObjectIsNullException;
 import com.example.library.exceptions.ResourceNotFoundException;
-import com.example.library.mapper.Mapper;
+import com.example.library.mapper.BookMapper;
 import com.example.library.repositories.PublisherRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,7 +22,7 @@ public class PublisherService {
 
     public List<PublisherResponseDTO> getAll(){
 
-        return Mapper.parseListObjects(repository.findAll(), PublisherResponseDTO.class);
+        return BookMapper.parseListObjects(repository.findAll(), PublisherResponseDTO.class);
     }
 
     @Transactional
