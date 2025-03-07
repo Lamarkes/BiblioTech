@@ -1,40 +1,47 @@
 package com.example.library.controllers;
 //importaçoes utilizadas para realizaçao do sistema
-import com.example.library.dto.BookRequestDTO;
-import com.example.library.dto.BookResponseDTO;
-import com.example.library.dto.BookUpdateDTO;
+import com.example.library.dto.book.BookRequestDTO;
+import com.example.library.dto.book.BookResponseDTO;
+import com.example.library.dto.book.BookUpdateDTO;
 import com.example.library.services.BookService;
-import com.example.library.services.PublisherService;
 import com.example.library.util.MediaType;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
+
 
 // Camada de Controle do sistema
 
 @RestController// Anotação que indica para o Spring que esta classe sera um controlador Rest
 @RequestMapping("/api/books/v1") // anotação que define o metodo de Request passando como valor /books - ira retornar todos os livros como padrao
 @Tag(name = "Books", description = "Path for books")
+@RequiredArgsConstructor
 public class BookController {
 
 
-    final BookService bookService;
+     final BookService bookService;
 
     // Injeçao de dependencia diretamente da camada de serviço
-     BookController(BookService bookService){
-        this.bookService = bookService;
-    }
+
 
     // primeira implementaçao Get do sistema - FindAll
     // esta funçao ira retornar todos os livros que estao atualmente ativos no sistema diretamente do Banco de Dados
+    @Operation(summary = "Get all books",
+    description = "Get all books from the database")
+    @ApiResponses(value = @ApiResponse(
+            responseCode = "200",description = "OK"
+    ))
     @GetMapping(produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
     public ResponseEntity<List<BookResponseDTO>> findAllBooks(){
+
         return ResponseEntity.ok(bookService.findAllBooks()); // quando for realizado o GET, retornara todos os livros como resposta
     }
 
@@ -42,11 +49,17 @@ public class BookController {
     // esta funçao ira adicionar um novo livro no banco de dados a partir das informaçoes que forem passadas
 
     // anotaçao que indica que sera feito um Post
-    @PostMapping(value = "/new",
+    @Operation(summary = "Save a book",
+            description = "Save a Book in database")
+    @ApiResponses(value = @ApiResponse(
+            responseCode = "201",description = "CREATED"
+    ))
+    @PostMapping(
             consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE}) // para ser realizada, deve ser passado o caminho "books/new"
     public ResponseEntity<BookResponseDTO> createBook(@RequestBody BookRequestDTO bookRequestDTO){ // indica que deve ser inserido um corpo na requisiçao que sera as informaçoes do novo livro
         var book = bookService.createBook(bookRequestDTO); // pega todas as informaçoes passadas como corpo e converte de bookDTO em um Book
+
         // apos ser convertido para um Book e passado pelas validaçoes, sera salvo no banco de dados com um metodo do bookService
         return ResponseEntity.status(HttpStatus.CREATED).body(book); // por fim sera retornado uma resposta informando que o livro foi adicionado
     }
@@ -54,7 +67,12 @@ public class BookController {
     // esta funcionalidade ira atualziar um livro que for buscado por um Id existente
 
     // esta anotaçao indica que sera realizado um Put
-    @PutMapping(value = "/update/{id}",
+    @Operation(summary = "Update a book",
+            description = "Update a book in database")
+    @ApiResponses(value = @ApiResponse(
+            responseCode = "200",description = "OK"
+    ))
+    @PutMapping(value = "/{id}",
             consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE}) // para relaizar, deve passar o caminho "books/update/id"
     public ResponseEntity<BookResponseDTO> updateBook(@PathVariable Long id, @RequestBody @Valid BookUpdateDTO request){ // o livro so podera ser atualizado passando um Id de livro existente e consequentemente os dados que deseja atualziar
@@ -64,7 +82,11 @@ public class BookController {
 
     //funçao Get - findByID
     // esta funçao fara uma bsuca no banco de dados do sistema pelo Id existente
-
+    @Operation(summary = "Get a book by ID",
+            description = "Get a book by ID")
+    @ApiResponses(value = @ApiResponse(
+            responseCode = "200",description = "OK"
+    ))
     @GetMapping(value = "/{id}",
             produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})// para ser utilizada, basta passar "books/numero-do-id"
     // devera receber um Id como variavel de caminho que sera utilizado na bsuca
@@ -77,6 +99,11 @@ public class BookController {
     }
     //funçao Get - findByAuthor
     // esta funçao fara uma bsuca no banco de dados do sistema pelo nome do autor
+    @Operation(summary = "Get all books by author",
+            description = "Get all books by author")
+    @ApiResponses(value = @ApiResponse(
+            responseCode = "200",description = "OK"
+    ))
     @GetMapping(value = "/author",
             produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE}) // caminho utilizado para realizar a busca
     public ResponseEntity<List<BookResponseDTO>> findByAuthor(@RequestParam String author){ // passando o nome do autor como paramentro
@@ -96,8 +123,12 @@ public class BookController {
 
     //funçao Get - findBytitle
     // esta funçao fara uma bsuca no banco de dados do sistema pelo titulo do livro
-
-    @GetMapping(value = "/books-by-title",
+    @Operation(summary = "Get all books by title",
+            description = "Get all books by title")
+    @ApiResponses(value = @ApiResponse(
+            responseCode = "200",description = "OK"
+    ))
+    @GetMapping(value = "/title",
             produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE}) // caminho para realizar a busca
     public ResponseEntity<BookResponseDTO> findByTitle(@RequestParam String title){ // sera passado o titulo do livro como paramentro
         var book = bookService.findBooksByTitle(title); // sera realizado a busca do livro e se existir, sera salvo na variavel
@@ -106,7 +137,12 @@ public class BookController {
 
     // funcao Delete - softdelete
     // esta funcao ira remover os livros que estejam com a varivavel active = false, uma abordagem para desativar o livro e nao deletar por compmeto
-    @DeleteMapping(value = "/disable/{id}") // caminho utilizado para desativar o livro
+    @Operation(summary = "Disable a book by ID",
+            description = "Disable a book by ID")
+    @ApiResponses(value = @ApiResponse(
+            responseCode = "200",description = "OK"
+    ))
+    @DeleteMapping(value = "/{id}") // caminho utilizado para desativar o livro
     public ResponseEntity<String> disableBook(@PathVariable Long id){ // o livro sera buscado por id
         bookService.disableBook(id); // se o livro existir, seu active sera passado para false e sera desativado
         return ResponseEntity.ok("Book successfully deactivated"); // retorna a mensagem de desativaçao
