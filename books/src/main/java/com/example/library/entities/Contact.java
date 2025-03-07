@@ -7,13 +7,19 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.io.Serial;
+import java.io.Serializable;
+
 @Entity
 @Table(name = "tb_contact")
 @Getter
 @Setter
 @NoArgsConstructor
 @EqualsAndHashCode
-public class Contact {
+public class Contact implements Serializable {
+
+    @Serial
+    private static final long serialVersionUID = 1L;
 
 
     @Id
