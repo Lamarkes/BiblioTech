@@ -1,5 +1,8 @@
 package com.example.library.enums;
 
+import lombok.Getter;
+
+@Getter
 public enum GenreBook {
 
     FANTASY("fantasy"),
@@ -20,9 +23,5 @@ public enum GenreBook {
 
     GenreBook(String msg) {
         this.message = msg;
-    }
-
-    public String getMessage() {
-        return message;
     }
 }
