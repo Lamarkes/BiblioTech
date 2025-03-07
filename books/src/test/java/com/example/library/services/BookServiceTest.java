@@ -1,8 +1,8 @@
 package com.example.library.services;
 
-import com.example.library.dto.BookRequestDTO;
-import com.example.library.dto.BookResponseDTO;
-import com.example.library.dto.BookUpdateDTO;
+import com.example.library.dto.book.BookRequestDTO;
+import com.example.library.dto.book.BookResponseDTO;
+import com.example.library.dto.book.BookUpdateDTO;
 import com.example.library.entities.Book;
 import com.example.library.exceptions.RequiredObjectIsNullException;
 import com.example.library.exceptions.ResourceNotFoundException;
@@ -16,9 +16,6 @@ import org.mockito.Mock;
 import org.junit.Test;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
 import java.util.Optional;
 
 import org.mockito.MockitoAnnotations;
