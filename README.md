@@ -121,6 +121,7 @@ Ao inicializar o projeto, é possivel acessar a documentação dos endpoints e t
 - Busca por ID
 - Busca por Autor
 - Busca por Título
+- Desativar Livro pelo ID
 #### Usuarios
 - Cadastro de Clientes (*EM BREVE*)
 

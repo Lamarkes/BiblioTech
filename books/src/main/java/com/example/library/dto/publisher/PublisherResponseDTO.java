@@ -1,4 +1,4 @@
-package com.example.library.dto;
+package com.example.library.dto.publisher;
 
 
 import com.example.library.entities.Book;

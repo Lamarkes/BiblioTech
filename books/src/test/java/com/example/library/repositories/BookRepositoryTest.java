@@ -1,6 +1,5 @@
 package com.example.library.repositories;
 
-import com.example.library.dto.BookRequestDTO;
 import com.example.library.entities.Book;
 import com.example.library.unittests.mapper.MockBook;
 import org.junit.jupiter.api.DisplayName;

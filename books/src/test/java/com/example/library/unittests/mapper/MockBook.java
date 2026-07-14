@@ -1,5 +1,5 @@
 package com.example.library.unittests.mapper;
-import com.example.library.dto.BookRequestDTO;
+import com.example.library.dto.book.BookRequestDTO;
 import com.example.library.entities.Book;
 import com.example.library.entities.Publisher;
 import com.example.library.enums.GenreBook;
@@ -16,7 +16,7 @@ public class MockBook {
     }
 
     public BookRequestDTO mockVO(){
-        return mockVO(0);
+        return mockVO();
     }
 
     public List<Book> mockEntityList(){
@@ -43,17 +43,16 @@ public class MockBook {
         book.setTitle("Titulo"+number);
         return book;
     }
-    public BookRequestDTO mockVO(int number){
-        return new BookRequestDTO(
-                "Autor"+number,
-                LocalDate.of(2014, Month.APRIL,10),
-                "Titulo"+number,
-                new BigDecimal("20"),
-                200,
-                GenreBook.ACTION,
-                5.0,
-                new Publisher(1L,"editora"+number,"descricao"+1,null,null),
-                "Descricao"+number
-        );
-    }
+//    public BookRequestDTO mockVO(int number){
+//        return new BookRequestDTO(
+//                "Autor"+number,
+//                LocalDate.of(2014, Month.APRIL,10),
+//                "Titulo"+number,
+//                new BigDecimal("20"),
+//                200,
+//                GenreBook.ACTION,
+//                5.0,
+//                new Publisher(1L,"editora"+number,"descricao"+1,null,null),
+//                "Descricao"+number
+//        );
 }
