@@ -1,71 +1,89 @@
 <p align="center">
-  <img src="./assets/logo-BiblioTech.jpg" alt="BiblioTech" height="331">
+  <img src="./assets/logo.png" alt="BiblioTech" height="331">
 </p>
 <hr>
 
 <h1 align="center">
-    📚 <a href="#" alt="Sistema bibliotecário"> BiblioTech </a>
+    📚 <a href="#" alt="Sistema bibliotecário"> BiblioTech | Plataforma de Publicação de Ebooks  </a>
 </h1>
 
-<h3 align="center">🔖 Permite aos bibliotecários manter um catálogo de livros, rastrear empréstimos e devoluções, e facilitar o acesso dos leitores às informações sobre os livros disponíveis.</h3>
+<h3 align="center">🔖 
+Plataforma para escritores independentes publicarem e distribuírem seus ebooks, permitindo que leitores descubram, baixem e acompanhem novas obras de forma simples e segura.
+
+</h3>
 
 <p align="center">
-        <img alt="GitHub language count" src="https://img.shields.io/github/languages/count/Lamarkes/spring-library?color=%2304D361">
-        <img alt="GitHub" src="https://img.shields.io/badge/Made with-JAVA-color.svg" alt="Java">
-        <img src="https://img.shields.io/badge/Staus-Em desenvolvimento-orange.svg" alt="Em Desenvolvimento">
+        <img alt="GitHub language count" src="https://img.shields.io/github/languages/count/Lamarkes/spring-library?style=for-the-badge&color=green">
+        <img alt="GitHub" src="https://img.shields.io/badge/Made with-JAVA-color.svg?style=for-the-badge" alt="Java">
+        <img alt="GitHub" src="https://img.shields.io/badge/Java-Spring%20Boot-green?style=for-the-badge" alt="Spring Boot">
+        <img src="https://img.shields.io/badge/Staus-Em desenvolvimento-orange.svg?style=for-the-badge" alt="Em Desenvolvimento">
         <a href="https://github.com/Lamarkes/spring-library/commits/main">
-        <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/Lamarkes/spring-library/main">
+        <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/Lamarkes/spring-library/main?style=for-the-badge">
         </a>
+        <img src="https://img.shields.io/badge/license-MIT-red?style=for-the-badge" alt="MIT">
 </p>
 
-<h4 align="center"> 
+<h3 align="center"> 
 	🚧  BiblioTech 📘 Em construção...  🚧
-</h4>
+</h3>
 
 <h2>📝 Índice</h2>
 
-* [Diagrama UML do Projeto](#diagrama-uml-do-bibliotech)
 * [Sobre o Projeto](#-sobre-o-projeto)
-* [Como Usar](#como-usar)
+* [Objetivos](#-objetivos)
+* [Como Usar](#-como-usar)
     * [Pré-Requisitos](#pré-requisitos)
-    * [Rodando o Backend](#-rodando-o-backend)
-* [Tecnologias](#-tecnologias)
+    * [Rodando o Backend](#rodando-o-backend)
+* [Tecnologias](#tecnologias)
      * [Back-end](#back-end)
+     * [Banco de dados](#banco-de-dados)
+     * [Testes](#testes)
      * [Utilitários](#utilitários)
-* Layout
-  * Web (*EM BREVE*)
-* [Funcionalidades](#funcionalidades)
-* Contribuidores
+* [Documentação](#documentação)
+     * [Swagger](#inicialização-do-swagger)
+* [Ferramentas](#ferramentas)
+* [Funcionalidades](#-funcionalidades)
+     * [Livros](#livros)
+     * [Usuários](#usuários-em-breve)
+* [Arquitetura](#-arquitetura)
 * [Autor](#autor)
+* [Entre em contato](#entre-em-contato)
 * [Licença](#-licença)
 
 
-## 📎 Diagrama UML do BiblioTech
-<p align="center">
-<img src="./assets/Projeto bibliotecário - Modelagem.png" alt="Modelagem" height="331">
-</p>
-
 ## 💻 Sobre o Projeto
 
-📚 BiblioTech - Uma maneira mais fácil de gerenciar sua biblioteca, tendo acesso aos livros e leitores. De uma forma mais intuitiva e inovadora, buscando sempre inovar com as novas tecnologias.
+BiblioTech - Uma plataforma web desenvolvida para aproximar escritores independentes de seus leitores. A aplicação permite que autores publiquem ebooks digitais, organizem suas obras e as disponibilizem para download, enquanto leitores podem descobrir novos títulos, criar suas bibliotecas pessoais e acompanhar seus autores favoritos.
 
-Este projeto tem como finalidade aplicar as tecnologias e tecnicas que estamos estudando no momento, desde a sua modelagem até sua aplicação na nuvem!
+O BiblioTech foi desenvolvido como um projeto de portfólio com o objetivo de aplicar conceitos modernos de desenvolvimento backend, arquitetura de microsserviços, segurança, mensageria e computação em nuvem.
 
-## Como usar
+Além das funcionalidades da plataforma, o projeto busca seguir boas práticas de engenharia de software, desde a modelagem da aplicação até sua implantação em ambiente de produção.
+
+## 🎯 Objetivos
+
+O BiblioTech busca fornecer uma plataforma simples para publicação de ebooks por escritores independentes, permitindo que leitores encontrem novas obras e construam sua biblioteca digital.
+
+Além da proposta funcional, o projeto também demonstra a utilização de tecnologias modernas amplamente utilizadas no mercado.
+
+Um dos principais objetivos do BiblioTech é facilitar a publicação e compartilhamento de obras. Por isso, a plataforma tem foco em tornar a busca por ebooks mais eficiente, disponibilizando de vários métodos de pesquisa por títulos.
+
+## 🚀 Como usar
 Este projeto atualmente é composto apenas por 1 pasta:
-1. Backend (pasta BiblioTech)
+1. Backend (pasta books)
    
 ### Pré-requisitos
 
- Antes de começar, você vai precisar certificar de ter instalado em sua máquina as seguintes ferramentas:
-- Java (Versão 17^)
-- Git
-- Maven (4.0.0^)
+ Antes de iniciar o projeto, certifique-se de possuir instalado:
+
+- Java 21
+- Maven
 - MySQL
-- VSCode
+- Git
+- Docker
+- IntelliJ IDEA ou VS Code
 - Postman
   
-#### 🎲 Rodando o Backend
+#### Rodando o Backend
 ```shell
 # Clone este repositório:
 
@@ -77,71 +95,102 @@ cd BiblioTech
 
 # Instale as dependências:
 
-mvn install 
+mvn clean install 
 
 # Inicie o servidor:
 
  mvn spring-boot:run 
 
-# O servidor inciará na porta:8080 - acesse http://localhost:8080 
 ```
 
-### 🛠 Tecnologias
+**Apos inicializar o servidor, acesse a pagina de documentação do Swagger para testar as rotas da API** 
+
+[Documentação](#documentação)
+
+### Tecnologias
 
 As seguintes ferramentas foram usadas na construção do projeto:
-#### 👩🏻‍💻 Back-End
+
+#### Back-End
 - [Java](https://www.oracle.com/br/java/)
 - [Spring Framework](https://spring.io/)
 - [Maven](https://maven.apache.org/)
-- [MySQL](https://www.mysql.com/)
+- [Spring Data JPA](https://spring.io/projects/spring-data-jpa)
+- [Hibernate](https://hibernate.org/)
+- [Flyway](https://github.com/flyway/flyway)
 
-#### 🧪 Testes
+#### Banco de dados
+- [MySQL](https://www.mysql.com/)
+- [H2 DATABASE](https://h2database.com/html/quickstart.html)
+
+#### Testes
 
 - [H2 Database](https://www.h2database.com)
-
-
 - [JUnit](https://junit.org/junit5/)
 - [Mockito](https://site.mockito.org/)
-  
-#### Utilitários:
-- Teste da API: [Postman](https://www.postman.com/)
-- Editor: [InteliJ](https://www.jetbrains.com/pt-br/idea/)
 
+### Documentação:
 
-### 📍 Documentação dos Endpoints (Swagger API)
-Ao inicializar o projeto, é possivel acessar a documentação dos endpoints e testa-los de maneira dinâmica: 
+O projeto contém a documentação da API por meio do Swagger, que pode ser acessada durante a execução do projeto.
 
-- [Página do Swagger](http://localhost:8080/swagger-ui/index.html)
+- [Swagger](https://swagger.io/)
 
+  #### Inicialização do Swagger:
+  Ao inicializar o projeto, é possivel acessar a documentação dos endpoints e testa-los de maneira dinâmica: 
 
-## Funcionalidades
+  - [Página do Swagger](http://localhost:8084/swagger-ui/index.html)
+
+### Ferramentas:
+
+As seguintes ferramentas foram utilizadas para desenvolver a API do sistema:
+
+- [Docker](https://www.docker.com/)
+- [Git](https://git-scm.com/)
+- [Postman](https://www.postman.com/)
+
+## 🛠 Funcionalidades
+
+A seguir, estão as funcionalidades presentes na API, além das futuras funcionalidades que estão em fase de planejamento.
+
 #### Livros
-- Cadastro de Livros
-- Busca de Livros
-- Busca por ID
-- Busca por Autor
-- Busca por Título
-- Desativar Livro pelo ID
-#### Usuarios
-- Cadastro de Clientes (*EM BREVE*)
 
-### Autor
----
+- Publicação de ebooks
+- Atualização dos ebooks
+- Remoção de ebooks
+- Pesquisa por título
+- Pesquisa por autor
+- Pesquisa por categoria
 
-<img style="border-radius: 50%;" src="" width="100px;" alt=""/>
- <br />
- <sub><b>Lamark Ricarte</b></sub>🚀
+#### Usuários (*EM BREVE*)
+- Cadastro
+- Login
+- Autenticação JWT
+- Controle de permissões (Leitor e Escritor)
+- Atualização de perfil
 
+## 🏗 Arquitetura
 
-Feito com ❤️ por Lamark Ricarte. Entre em contato!
+O projeto será desenvolvido utilizando arquitetura baseada em microsserviços.
+
+O projeto está planejado em três serviços principais:
+
+- 📚 Book Service (Atual)
+- 👤 User Service
+- 📧 Email Service
+
+A comunicação entre os serviços será realizada através de APIs REST e mensageria utilizando RabbitMQ.
+
+## Autor
+<sub><b>Lamark Ricarte</b></sub>🚀
+
+Feito com ❤️ por Lamark Ricarte. 
+
+## Entre em contato
 
 [![Linkedin Badge](https://img.shields.io/badge/-lamarkricarte-blue?style=flat-square&logo=Linkedin&logoColor=white&link=https://www.linkedin.com/in/lamarkricarte/)](https://www.linkedin.com/in/lamarkricarte/) 
 [![Gmail Badge](https://img.shields.io/badge/-lamark12ricarte@gmail.com-c14438?style=flat-square&logo=Gmail&logoColor=white&link=mailto:lamark12ricarte@gmail.com)](mailto:lamark12ricarte@gmail.com)
 
----
 
 ## 📝 Licença
 
 Este projeto esta sobe a licença [MIT](./LICENSE).
-
----
